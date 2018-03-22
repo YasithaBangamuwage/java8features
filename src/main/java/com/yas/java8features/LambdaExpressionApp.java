@@ -26,13 +26,24 @@ public class LambdaExpressionApp
     Greetings g2 = () -> System.out.println("Hello with lambda!");
     g2.sayHello();
 
+    //with parameter
+    Calculator c1 = (a,b)->a+b;
+    System.out.println(c1.add(2,2));
+
+    Calculator c2 = (a,b)->{return (a+b);};
+    System.out.println(c2.add(2,2));
+
   }
 
   @FunctionalInterface
   interface Greetings
   {
-
     void sayHello();
   }
 
+  @FunctionalInterface
+  interface Calculator
+  {
+    int add(int x, int y);
+  }
 }
