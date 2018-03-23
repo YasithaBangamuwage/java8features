@@ -1,5 +1,9 @@
 package com.yas.java8features;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class LambdaExpressionApp
 {
   public static void main(String[] args)
@@ -33,6 +37,27 @@ public class LambdaExpressionApp
     Calculator c2 = (a,b)->{return (a+b);};
     System.out.println(c2.add(2,2));
 
+    //foreach loop
+    List<String> list =new ArrayList<String>();
+    list.add("yasitha");
+    list.add("thilantha");
+    list.add("banamuwage");
+    list.forEach((n)->System.out.println(n));
+
+    //Comparator
+    List<Product> productList =new ArrayList<Product>();
+    productList.add(new Product(3,"pro3",30));
+    productList.add(new Product(1,"pro1",10));
+    productList.add(new Product(2,"pro2",20));
+    productList.add(new Product(4,"pro4",40));
+
+    Collections.sort(productList, (p1,p2)->{
+      return p1.name.compareTo(p2.name);
+    });
+
+    for(Product p:productList){
+      System.out.println(p.id+" "+p.name+" "+p.price);
+    }
   }
 
   @FunctionalInterface
@@ -45,5 +70,18 @@ public class LambdaExpressionApp
   interface Calculator
   {
     int add(int x, int y);
+  }
+
+  static class Product{
+
+    private int id;
+    private String name;
+    private int price;
+
+    public Product(int id, String name, int price) {
+      this.id = id;
+      this.name = name;
+      this.price = price;
+    }
   }
 }
