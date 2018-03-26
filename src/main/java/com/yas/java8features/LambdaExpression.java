@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 /**
  * @author Yas
  */
-public class LambdaExpressionApp
+public class LambdaExpression
 {
   public static void main(String[] args)
   {
