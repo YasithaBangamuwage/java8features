@@ -1,9 +1,14 @@
 package com.yas.java8features;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
+/**
+ * @author Yas
+ */
 public class LambdaExpressionApp
 {
   public static void main(String[] args)
@@ -50,6 +55,7 @@ public class LambdaExpressionApp
     productList.add(new Product(1,"pro1",10));
     productList.add(new Product(2,"pro2",20));
     productList.add(new Product(4,"pro4",40));
+    productList.add(new Product(5,"pro5",40));
 
     Collections.sort(productList, (p1,p2)->{
       return p1.name.compareTo(p2.name);
@@ -58,6 +64,24 @@ public class LambdaExpressionApp
     for(Product p:productList){
       System.out.println(p.id+" "+p.name+" "+p.price);
     }
+
+    //Filter collection data
+    Stream<Product> filteredList =  productList.stream().filter(product -> product.price>30);
+    filteredList.forEach(product -> System.out.println(product.price));
+
+    //Event listener
+    JTextField jTextField = new JTextField();
+    jTextField.setBounds(50, 50,150,20);
+    JButton button =new JButton("click");
+    button.setBounds(80,100,70,30);
+
+    button.addActionListener(e -> jTextField.setText("text comes under lambda!"));
+    JFrame f=new JFrame();
+    f.add(jTextField);f.add(button);
+    f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    f.setLayout(null);
+    f.setSize(300, 200);
+    f.setVisible(true);
   }
 
   @FunctionalInterface
